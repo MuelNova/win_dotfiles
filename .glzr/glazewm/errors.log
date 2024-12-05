@@ -1,2 +1,0 @@
-[2m2024-10-01T10:39:50.592780Z[0m [31mERROR[0m [2mglazewm::common::commands::shell_exec[0m[2m:[0m [3merr_message[0m[2m=[0m"Failed to execute 'start /min wsl.exe -d arch code'.\n\nError: The operation was canceled by the user. (0x800704C7)"
-[2m2024-10-01T10:40:08.074297Z[0m [31mERROR[0m [2mglazewm::common::commands::shell_exec[0m[2m:[0m [3merr_message[0m[2m=[0m"Failed to execute 'Start-Process /min wsl.exe -d arch code'.\n\nError: The operation was canceled by the user. (0x800704C7)"

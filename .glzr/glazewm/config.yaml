@@ -5,6 +5,13 @@ general:
   startup_commands: [
       "shell-exec zebar",
       # "shell-exec %userprofile%/.glzr/zebar/start.bat"
+
+      # Keep these workspaces alive
+      "focus --workspace 2",
+      "focus --workspace 3",
+      "focus --workspace 4",
+      "focus --workspace 5",
+      "focus --workspace 1"
     ]
 
   # Commands to run just before the WM is shutdown.
@@ -36,7 +43,7 @@ gaps:
 
   # Gap between windows and the screen edge.
   outer_gap:
-    top: "62px"
+    top: "65px"
     right: "14px"
     bottom: "5px"
     left: "14px"
@@ -48,13 +55,13 @@ window_effects:
     # ** Exclusive to Windows 11 due to API limitations.
     border:
       enabled: true
-      color: "#573695"
+      color: "#a9b1d6"
 
   # Visual effects to apply to non-focused windows.
   other_windows:
     border:
       enabled: true
-      color: "#33348C"
+      color: "#565f89"
 
 window_behavior:
   # New windows are created in this state whenever possible.
@@ -97,10 +104,13 @@ workspaces:
   - name: "9"
 
 window_rules:
-  - commands: ["set-fullscreen"]
+  - commands: ["set-tiling"]
     match:
       - window_process: { equals: "ida" }
-      - window_title: { regex: "^IDA " }
+
+  - commands: ["set-floating"]
+    match:
+      - window_process: { equals: "YourPhoneAppProxy" }
 
   - commands: ["ignore"]
     match:
@@ -108,6 +118,14 @@ window_rules:
       - window_process: { equals: "zebar" }
 
       - window_process: { equals: "msrdc" }
+
+      - window_process: { equals: "TickTick" }
+      
+      - window_process: { equals: "mstsc" }
+
+
+      - window_process: { equals: "explorer" }
+        window_title: { equals: "Run" }
 
       # Ignores picture-in-picture windows for browsers.
       - window_title: { regex: "[Pp]icture.in.[Pp]icture" }
@@ -118,9 +136,7 @@ window_rules:
         window_class: { regex: 'HwndWrapper\[PowerToys\.PowerAccent.*?\]' }
       - window_process: { equals: "Lively" }
         window_class: { regex: "HwndWrapper*" }
-  - commands: ["ignore"]
-    match:
-      - window_process: { equals: "ida" }
+      - window_process: { equals: "pot" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
@@ -151,7 +167,7 @@ keybindings:
     bindings: ["LWin+t"]
   - commands: ["shell-exec wt.exe -w _quake"]
     bindings: ["alt+`"]
-  - commands: ["shell-exec code"]
+  - commands: ["shell-exec --hide-window code"]
     bindings: ["LWin+c"]
   - commands:
       [
@@ -231,7 +247,7 @@ keybindings:
 
   # Close focused window.
   - commands: ["close"]
-    bindings: ["LWin+q"]
+    bindings: ["LWin+q", "alt+q"]
 
   # Kill GlazeWM process safely.
   - commands: ["wm-exit"]
@@ -286,9 +302,9 @@ keybindings:
   - commands: ["move-workspace --direction left"]
     bindings: ["alt+shift+a"]
   - commands: ["move-workspace --direction right"]
-    bindings: ["alt+shift+f"]
-  - commands: ["move-workspace --direction up"]
     bindings: ["alt+shift+d"]
+  - commands: ["move-workspace --direction up"]
+    bindings: ["alt+shift+w"]
   - commands: ["move-workspace --direction down"]
     bindings: ["alt+shift+s"]
 
